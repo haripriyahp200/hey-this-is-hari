@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="40856bcc-8829-41eb-8794-7502fbf2fadb" >
+		<http:listener-connection host="localhost" port="8081" />
+	</http:listener-config>
+	<flow name="flow_typesFlow" doc:id="17a2917f-a9ea-4483-a529-52b152a2cfe8" >
+		<http:listener doc:name="Listener" doc:id="6dbd6327-f680-4030-8af2-46636b4e80c3" config-ref="HTTP_Listener_config" path="/flow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="18420d75-e2dd-4796-addb-7238079f6ac2" message="flow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="37fec03e-d343-4d40-8504-7701554ddadc" message="start"/>
+		<async doc:name="Async" doc:id="43e87767-5b12-4cf8-875d-9ac0d33a9e84" >
+			<logger level="INFO" doc:name="Logger" doc:id="c5cbc119-ae17-43f2-b23d-96e376d894e6" message="one"/>
+		</async>
+		<logger level="INFO" doc:name="Logger" doc:id="02cef066-165b-43f2-891d-0b6545dc674e" message="two"/>
+		<logger level="INFO" doc:name="Logger" doc:id="cb5f56c2-b0f7-46f6-bfac-c2ce1a45fa57" message="three"/>
+		<logger level="INFO" doc:name="Logger" doc:id="4f2901fd-9ccc-48c4-8b85-b914bf72f781" message="flow1"/>
+		<flow-ref doc:name="Flow Reference" doc:id="6dab821d-6fbb-43ab-ace3-38fbfd0e4d20" name="Sub_Flow"/>
+		<flow-ref doc:name="Flow Reference" doc:id="f8b45fcd-1894-4595-8b72-2ff9bcdbf3ee" name="Private_Flow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ed1b84e4-3e19-4f10-a052-0fbbf053dba9" message="ten"/>
+	</flow>
+	<sub-flow name="Sub_Flow" doc:id="ac00a8ef-9bc8-43fc-95b5-eb2d6268f0c9" >
+		<logger level="INFO" doc:name="Logger" doc:id="cd288f02-bc6b-460a-948a-50fd2c142af0" message="this is sub flow"/>
+	</sub-flow>
+	<flow name="Private_Flow" doc:id="481085dd-3f5a-44f6-b894-627845275de7" >
+		<logger level="INFO" doc:name="Logger" doc:id="9a1bce3f-bef0-4a06-857a-73eb04d76d14" message="this is private flow"/>
+	</flow>
+</mule>
