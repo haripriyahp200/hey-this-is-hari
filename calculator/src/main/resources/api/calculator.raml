@@ -1,0 +1,36 @@
+#%RAML 1.0
+title: calculator
+version: v1
+protocols: [HTTP]
+description: "this api is used to perform some math ops"
+mediaType: application/json
+traits:
+  query: !include TRAITS/reuse.raml
+/addition:
+   get:
+    is: [query]
+    responses:
+      200:
+        body:
+            example: !include examples/Addition-response.json
+/subraction:
+  put:
+    is: [query]
+    responses:
+      200:
+        body:
+            example: !include examples/Subraction-response.json
+/multiply:
+  delete:
+    is: [query]
+    responses:
+      200:
+        body:
+            example: !include examples/Multiply-response.json
+/division:
+  patch:
+    is: [query]
+    responses:
+      200:
+        body:
+            example: !include examples/Division-response.json
